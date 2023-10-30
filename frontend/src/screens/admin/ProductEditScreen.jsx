@@ -49,22 +49,22 @@ const ProductEditScreen = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const updatedProduct = {
-      _id: productId,
-      name,
-      price,
-      image,
-      brand,
-      category,
-      countInStock,
-      description,
-    };
-    const result = await updateProduct(updatedProduct);
-    if (result.error) {
-      toast.error(result.error);
-    } else {
+    try {
+      await updateProduct({
+        _id: productId,
+        name,
+        price,
+        image,
+        brand,
+        category,
+        countInStock,
+        description,
+      }).unwrap(); // NOTE: here we need to unwrap the Promise to catch any rejection in our catch block
       toast.success('Product updated');
+      refetch();
       navigate('/admin/productlist');
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
     }
   };
 
@@ -88,6 +88,7 @@ const ProductEditScreen = () => {
       <FormContainer>
         <h1>Edit Product</h1>
         {loadingUpdateProduct && <Loader />}
+        {loadingUploadImage && <Loader />}
         {isLoading ? (
           <Loader />
         ) : error ? (

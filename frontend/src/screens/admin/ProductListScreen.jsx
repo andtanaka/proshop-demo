@@ -1,5 +1,5 @@
 import { LinkContainer } from 'react-router-bootstrap';
-import { Table, Button, Row, Col, Tab } from 'react-bootstrap';
+import { Table, Button, Row, Col } from 'react-bootstrap';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import Message from '../../components/Message.jsx';
 import Loader from '../../components/Loader.jsx';
@@ -87,7 +87,7 @@ const ProductListScreen = () => {
             </thead>
             <tbody>
               {products.map((product) => (
-                <tr>
+                <tr key={product._id}>
                   <td>{product._id}</td>
                   <td>{product.name}</td>
                   <td>{product.price}</td>
