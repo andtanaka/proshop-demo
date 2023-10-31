@@ -59,7 +59,7 @@ const OrderScreen = () => {
     return actions.order.capture().then(async function (details) {
       //details vem do paypal
       try {
-        await payOrder({ orderId, details });
+        await payOrder({ orderId, details }).unwrap();
         refetch(); //após marcado como "pago", atualiza a Message to "Paid on"
         toast.success('Payment successful');
       } catch (err) {
@@ -106,7 +106,7 @@ const OrderScreen = () => {
   return isLoading ? (
     <Loader />
   ) : error ? (
-    <Message variant="danger">{error}</Message>
+    <Message variant="danger">{error?.data?.message || error.error}</Message>
   ) : (
     <>
       <h1>Order {order._id}</h1>
