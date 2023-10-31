@@ -1,7 +1,7 @@
 import { Pagination } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
-const Paginate = ({ pages, page, isAdmin = false }) => {
+const Paginate = ({ pages, page, isAdmin = false, keyword = '' }) => {
   return (
     pages > 1 && (
       <Pagination>
@@ -9,7 +9,11 @@ const Paginate = ({ pages, page, isAdmin = false }) => {
           <LinkContainer
             key={p + 1}
             to={
-              !isAdmin ? `/page/${p + 1}` : `/admin/productlist/page/${p + 1}`
+              !isAdmin
+                ? keyword
+                  ? `/search/${keyword}/page/${p + 1}`
+                  : `/page/${p + 1}`
+                : `/admin/productlist/page/${p + 1}`
             }
           >
             <Pagination.Item active={p + 1 === page}>{p + 1}</Pagination.Item>
