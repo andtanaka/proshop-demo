@@ -20,6 +20,7 @@ import Rating from '../components/Rating';
 import Loader from '../components/Loader.jsx';
 import Message from '../components/Message.jsx';
 import { addToCart } from '../store/slices/cartSlice.js';
+import Meta from '../components/Meta.jsx';
 
 const ProductScreen = () => {
   const { id: productId } = useParams();
@@ -75,6 +76,7 @@ const ProductScreen = () => {
         </Message>
       ) : (
         <>
+          <Meta title={product.name} />
           <Row>
             <Col md={5}>
               <Image src={product.image} alt={product.name} fluid />

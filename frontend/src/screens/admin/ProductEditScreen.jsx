@@ -88,7 +88,6 @@ const ProductEditScreen = () => {
       <FormContainer>
         <h1>Edit Product</h1>
         {loadingUpdateProduct && <Loader />}
-        {loadingUploadImage && <Loader />}
         {isLoading ? (
           <Loader />
         ) : error ? (
@@ -129,6 +128,7 @@ const ProductEditScreen = () => {
                 onChange={handlerUploadFile}
               ></Form.Control>
             </Form.Group>
+            {loadingUploadImage && <Loader />}
             <Form.Group controlId="brand" className="my-2">
               <Form.Label>Brand</Form.Label>
               <Form.Control
