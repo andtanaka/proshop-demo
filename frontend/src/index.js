@@ -41,6 +41,10 @@ const router = createBrowserRouter([
         element: <HomeScreen />,
       },
       {
+        path: 'page/:pageNumber',
+        element: <HomeScreen />,
+      },
+      {
         path: 'product/:id',
         element: <ProductScreen />,
       },
@@ -100,6 +104,12 @@ const router = createBrowserRouter([
             path: 'productlist',
             element: <ProductListScreen />,
           },
+
+          {
+            path: 'productlist/page/:pageNumber',
+            element: <ProductListScreen />,
+          },
+
           {
             path: 'product/:id/edit',
             element: <ProductEditScreen />,
